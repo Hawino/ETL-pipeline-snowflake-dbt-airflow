@@ -65,15 +65,19 @@ models:
       materialized: table
       snowflake_warehouse: dbt_wh
 ```
+\
 2. Buat file baru di luar folder dengan nama `packages.yml` dengan isi code
 ```
 packages:
   - package: dbt-labs/dbt_utils
     version: 1.1.1
 ```
+\
 3. Selanjutnya di bagian terminal, running code `dbt deps` untuk menginstall dbt packages yang sudah kita setup di poin 2.
+\
 4. Buat 2 folder baru pada folder Models, yaitu marts dan staging\
 ![image](https://github.com/Hawino/ETL-pipeline-snowflake-dbt-airflow/assets/160495569/da89e2ed-31e7-42f7-8659-5670f7be6fad)
+\
 5. Pada folder staging, akan membuat 3 file baru yaitu:
   - tpch_sources.yml
   - stg_tpch_orders.sql
@@ -134,7 +138,7 @@ from
 from
     {{ source('tpch', 'lineitem') }}
 ```
-
+\
 6. Pada folder marts, akan membuat 3 file baru yaitu:
   - int_order_items.sql
   - int_order_items_summary.sql
@@ -184,12 +188,61 @@ join
         on orders.order_key = order_item_summary.order_key
 order by order_date
 ```
-
+\
 7. Setup Fungsi untuk nanti dipanggil di salah satu tabel, pada folder Makro, buat file `pricing.sql` dengan isi code
 ```
 {% macro discounted_amount(extended_price, discount_percentage, scale=2) %}
     (-1 * {{extended_price}} * {{discount_percentage}})::decimal(16, {{ scale }})
 {% endmacro %}
 ```
+\
+8. Setup file test untuk melakukan test pada code dan setup sebelumnya.Pada Folder Tests, membuat 3 file, yaitu:
+  - generic_test.yml
+  - fct_orders_discount.sql
+  - fct_orders_date_valid.sql\
 
-8. 
+ `generic_test.yml`
+ ```
+models:
+  - name: fct_orders
+    columns:
+      - name: order_key
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_tpch_orders')
+              field: order_key
+              severity: warn
+      - name: status_code
+        data_tests:
+          - accepted_values:
+              values: ['P', 'O', 'F']
+```
+`fct_orders_discount.sql`
+```
+select
+    *
+from
+    {{ref('fct_orders')}}
+where
+    item_discount_amount > 0
+```
+`fct_orders_date_valid.sql`
+```
+select
+    *
+from
+    {{ref('fct_orders')}}
+where
+    date(order_date) > CURRENT_DATE()
+    or date(order_date) < date('1990-01-01')
+```
+\
+9. Jika semua file telah dibuat maka running code `dbt run` untuk running semua code. Jika ada error, lakukan debug, gunakan code `dbt debug`
+![image](https://github.com/Hawino/ETL-pipeline-snowflake-dbt-airflow/assets/160495569/90ccb3be-3dc1-47a5-b786-1961b2200b79)
+
+\
+10. Setelah itu melakukan test pada code dengan running code `dbt test` untuk memastikan table yang dibuat itu benar dan jika semua normal maka tampilannya seperti ini:
+![image](https://github.com/Hawino/ETL-pipeline-snowflake-dbt-airflow/assets/160495569/41c18738-d341-4a5e-905f-fba56b81f32b)
+
