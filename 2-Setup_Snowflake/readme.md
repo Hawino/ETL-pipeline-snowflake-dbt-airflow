@@ -19,7 +19,7 @@ create role if not exists dbt_role;
 
 show grants on warehouse dbt_wh;
 grant usage on warehouse dbt_wh to role dbt_role;
-grant role dbt_role to user hawino; -- ganti ke username sendiri
+grant role dbt_role to user xxx; -- ganti ke username akun snowflake sendiri
 grant usage on warehouse dbt_wh to role dbt_role;
 grant all on database dbt_db to role dbt_role;
 
