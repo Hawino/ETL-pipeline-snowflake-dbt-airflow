@@ -12,4 +12,6 @@ Membuat data pipeline end to end berupa Extract-Transform-Load (ETL) menggunakan
 3. Setup DBT seperti dbt_project, model, packages, macro hingga test
 4. Setup Airflow seperti dbt_dags, requirement dan docker file
 
-
+## Source
+Portofolio ini disesuaikan dari video Youtube akun jayzern
+https://youtu.be/OLXkGB7krGo?si=5bLSVwCwMWqwTwpQ
