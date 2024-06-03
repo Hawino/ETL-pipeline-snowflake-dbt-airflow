@@ -66,6 +66,9 @@ Untuk user dan pass di Airflow UI, gunakan admin
 ## Setup di Airflow UI
 1. Setelah masuk ke dalam Airflow UI, di menubar atas Admin > Connections. Buat Connections baru. Masukan data yang diperlukan seperti username Snowflake, password hingga Account ID Snowflake seperti ini
 <img width="960" alt="screencapture-localhost-8080-connection-edit-1-2024-06-03-20_54_15" src="https://github.com/Hawino/ETL-pipeline-snowflake-dbt-airflow/assets/160495569/1f8d029e-8c45-4508-9225-0437b938aa7f">
+\
 2. Pada Menubar, klik DAGs. Selanjutnya akan muncul dag yg kita setup sebelumnya, yaitu dbt_dag. Klik dbt_dag.
-3. Unpause DAG dan trigger DAG. Proses otomasi Airflow berhasil jika seluruh indikator berwarna hijau.
+3. \
+4. Unpause DAG dan trigger DAG. Proses otomasi Airflow berhasil jika seluruh indikator berwarna hijau.
+\
 <img width="944" alt="Screenshot 2024-06-03 210534" src="https://github.com/Hawino/ETL-pipeline-snowflake-dbt-airflow/assets/160495569/d86490d6-28ab-4119-b2ca-c67908b4142c">
