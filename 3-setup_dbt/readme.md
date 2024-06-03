@@ -245,4 +245,8 @@ where
 \
 10. Setelah itu melakukan test pada code dengan running code `dbt test` untuk memastikan table yang dibuat itu benar dan jika semua normal maka tampilannya seperti ini:
 ![image](https://github.com/Hawino/ETL-pipeline-snowflake-dbt-airflow/assets/160495569/41c18738-d341-4a5e-905f-fba56b81f32b)
+\
+
+11. Cek di Snowflake, table-table akan muncul seperti ini:
+![image](https://github.com/Hawino/ETL-pipeline-snowflake-dbt-airflow/assets/160495569/6b4a482e-1123-4eb7-bb48-e95f66bc71f8)
 
