@@ -14,7 +14,7 @@ drop database if exists dbt_db;
 drop role if exists dbt_role;
 
 create database if not exists dbt_db;
-create warehouse dbt_wh with warehouse_size='x-small';
+create warehouse if not exist dbt_wh with warehouse_size='x-small';
 create role if not exists dbt_role;
 
 show grants on warehouse dbt_wh;
