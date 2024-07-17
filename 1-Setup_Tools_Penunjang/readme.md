@@ -3,7 +3,7 @@
 ## Anaconda/Python
 1. Download aplikasi Anaconda/Python di https://www.anaconda.com/
 2. Setup Environment Variables agar Anaconda dapat diakses melalui Command Prompt\
-   Bisa ikuti tutorial yang ada di link ini: https://www.tutorialspoint.com/how-to-set-up-anaconda-path-to-environment-variable
+   Bisa ikuti tutorial yang ada di link ini: https://www.geeksforgeeks.org/how-to-setup-anaconda-path-to-environment-variable/
 3. Jika setup environment variables benar maka Anaconda dapat diakses seperti ini
  <img width="956" alt="image" src="https://github.com/Hawino/ETL-pipeline-snowflake-dbt-airflow/assets/160495569/c3198ae5-8a88-417e-b3fd-c6c78f338e71">
 
